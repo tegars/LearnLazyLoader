@@ -19,8 +19,7 @@ namespace LearnLazyLoader.Controllers
         }
         public IActionResult Get()
         {
-            var category = _context.Categories.ToList();
-            return Ok(category);
+            return Ok("Hello HomeController");
         }
     }
 }
