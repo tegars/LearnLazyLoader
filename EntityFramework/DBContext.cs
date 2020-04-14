@@ -9,6 +9,10 @@ namespace LearnLazyLoader.EntityFramework
 {
     public class DBContext : DbContext
     {
+        public DBContext(DbContextOptions<DBContext> options) : base(options)
+        {
+
+        }
         public DbSet<Category> Categories { set; get; }
         public DbSet<Product> Products { set; get; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

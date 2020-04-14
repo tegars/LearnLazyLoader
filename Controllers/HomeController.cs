@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LearnLazyLoader.EntityFramework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,13 +12,15 @@ namespace LearnLazyLoader.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        public HomeController()
+        private DBContext _context;
+        public HomeController(DBContext context)
         {
-
+            _context = context;
         }
         public IActionResult Get()
         {
-            return Ok();
+            var category = _context.Categories.ToList();
+            return Ok(category);
         }
     }
 }
