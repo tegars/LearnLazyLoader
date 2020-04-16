@@ -1,5 +1,6 @@
 ﻿using LearnLazyLoader.EntityFramework.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,17 @@ namespace LearnLazyLoader.EntityFramework
 {
     public class DBContext : DbContext
     {
-        public DBContext(DbContextOptions<DBContext> options) : base(options)
+        private IConfiguration _configuration;
+        public DBContext(DbContextOptions<DBContext> options, IConfiguration configuration) : base(options)
         {
-
+            _configuration = configuration;
         }
         public DbSet<Category> Categories { set; get; }
         public DbSet<Product> Products { set; get; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
             optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseNpgsql(@"server=localhost;database=LearnLazyLoader;Port=5432;User Id=postgres;Password=fads;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

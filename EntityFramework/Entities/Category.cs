@@ -11,6 +11,8 @@ namespace LearnLazyLoader.EntityFramework.Entities
         [Key]
         public int Id { set; get; }
         public string Name { set; get; }
+        public string Note { set; get; }
+        public string Catatan { set; get; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }
