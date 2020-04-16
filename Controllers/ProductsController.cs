@@ -22,7 +22,7 @@ namespace LearnLazyLoader.Controllers
         }
         public IActionResult Get()
         {
-            List<Product> products = _context.Products.Include(x=>x.Category).ToList();
+            List<Product> products = _context.Products.ToList();
             List<ProductDto> productsDto = new List<ProductDto>();
             foreach (var product in products)
             {

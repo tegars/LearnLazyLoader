@@ -17,6 +17,7 @@ namespace LearnLazyLoader.EntityFramework
         public DbSet<Product> Products { set; get; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseNpgsql(@"server=localhost;database=LearnLazyLoader;Port=5432;User Id=postgres;Password=fads;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

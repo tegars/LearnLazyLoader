@@ -23,7 +23,7 @@ namespace LearnLazyLoader.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var categories = _context.Categories.Include(x=>x.Products).ToList();
+            var categories = _context.Categories.ToList();
             List<CategoryDto> categoriesDto = new List<CategoryDto>();
             foreach (var category in categories)
             {
